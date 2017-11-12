@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+a<input type="text" id="A" ><p>
+op<input type="text" id="Op" value=""><p>
+b<input type="text" id="B" value=""><p>
+=<input type="text" id="Res" value=""><p>
+<input type="button" id="Btn" onclick="res()" value="Calculate"><p>
+
+<script>
+    function res()
+    {
+        var x = document.getElementById("A").value;
+        var y = document.getElementById("B").value;
+        var op = document.getElementById("Op").value;
+        var res = calcN(Number(x),Number(y),op);
+        document.getElementById("Res").value = res;
+    }
+
+    function calcN( a, b, op )
+    {
+        if(op == '+')
+            op = 'p';
+	
+        var req = "a="+a+"&b="+b+"&op="+op;
+        var rr = new XMLHttpRequest();
+        rr.open('GET', 'http://localhost:8888?'+req, false);
+        rr.send(null);
+        return rr.responseText;
+    }
+</script>
+
+</body>
+</html>
